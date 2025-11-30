@@ -5,27 +5,37 @@ The objective of this project is to segment customers of a UK-based online retai
 
 **Dataset:** 2 Years of transactional data (2009-2011).
 
-## 📊 Final Result (Segmentation)
-The SQL analysis successfully categorized customers based on their purchasing behavior.
-* **Champions:** High spenders who buy often and recently.
-* **Loyal Customers:** Frequent buyers.
-* **At Risk:** Big spenders who haven't purchased in a while.
+## 📊 Key Insights & Visualizations
 
-![RFM Result](images/rfm_result.png)
+### 1. Customer Segments Distribution
+*Most of our user base falls into the "Regular" category, but we identified a strong group of **Champions** and **Loyal Customers** who drive revenue.*
+![Segments](images/rfm_distribution.png)
+
+### 2. Recency vs Frequency Analysis
+*Champions (in purple/dark) are clustered at the top left: they buy frequently and recently. At Risk customers (in red/orange) buy frequently but haven't been seen in a while.*
+![Scatter Plot](images/rfm_scatter.png)
 
 ## 🛠️ Tech Stack
-* **Python (Pandas):** ETL process (Extract, Transform, Load) to merge and clean 2 years of Excel data into a SQLite database.
-* **SQL (SQLite):**
-    * Data Cleaning (Views).
-    * RFM Calculation (Window Functions `NTILE`).
-    * Segmentation Logic (`CASE` statements).
+* **Python (Pandas, Seaborn):** ETL pipeline (Extract, Transform, Load) and Data Visualization.
+* **SQL (SQLite):** Advanced data querying using Window Functions (`NTILE`) and CTEs for segmentation logic.
 
-## 🚀 How to Replicate
-1.  Run the ETL script:
+## 🚀 How to Run
+1.  **Setup Database:**
     ```bash
     python notebooks/setup_db.py
     ```
-2.  Execute SQL scripts in DBeaver/VS Code:
-    * `1_data_prep.sql`
-    * `2_rfm_calculation.sql`
-    * `3_segmentation.sql`
+2.  **Run Full Analysis Pipeline:**
+    ```bash
+    python notebooks/run_full_project.py
+    ```
+3.  **Generate Visualizations:**
+    ```bash
+    python notebooks/visualization.py
+    ```
+
+## 📂 Project Structure
+```text
+├── data/               # Raw CSVs & SQLite Database
+├── notebooks/          # Python ETL & Automation Scripts
+├── sql_scripts/        # SQL Queries for RFM Logic
+└── images/             # Generated Charts
